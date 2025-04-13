@@ -1,0 +1,9 @@
+[Unit]
+Description=Plugin Loader server
+
+[Service]
+Type=notify
+ExecStart=
+
+[Install]
+WantedBy=multi-user.target
