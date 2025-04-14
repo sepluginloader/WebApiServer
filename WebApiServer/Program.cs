@@ -51,9 +51,14 @@ public class Program
 
         builder.Services.AddControllers();
 
-        var app = builder.Build();
+        WebApplication app = builder.Build();
 
-        app.UseStaticFiles();
+        FileExtensionContentTypeProvider fileProvider = new FileExtensionContentTypeProvider();
+        fileProvider.Mappings[".nupkg"] = "application/octet-stream";
+        app.UseStaticFiles(new StaticFileOptions()
+        {
+            ContentTypeProvider = fileProvider
+        });
 
         app.MapControllers();
 
